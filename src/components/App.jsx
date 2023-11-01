@@ -13,12 +13,24 @@ const testContacts = [
 ];
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      contacts: testContacts,
-      filter: '',
-    };
+  state = {
+    contacts: testContacts,
+    filter: '',
+  };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('new contact');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
   }
 
   handleFilterChange = event => {
