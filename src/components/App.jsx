@@ -39,10 +39,10 @@ export class App extends Component {
   onContactFormSubmit = (name, number) => {
     if (
       this.state.contacts.some(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
+        contact => contact.name.toLowerCase() === name.toLowerCase() || contact.number === number
       )
     ) {
-      alert(`${name} is already in contacts`);
+      alert(`${name} or ${number} is already in contacts`);
       return;
     }
     const newContact = {
