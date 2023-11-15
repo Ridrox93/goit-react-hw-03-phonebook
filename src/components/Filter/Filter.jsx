@@ -1,6 +1,6 @@
 import css from './Filter.module.css';
 
-export const Filter = props => {
+export const Filter = ({filter, handleFilterChange}) => {
   return (
     <>
       <h2 className={css.name}>Search</h2>
@@ -8,8 +8,8 @@ export const Filter = props => {
         className={css.input}
         type="text"
         name="filter"
-        value={props.filter}
-        onChange={props.handleFilterChange}
+        value={filter}
+        onChange={handleFilterChange}
         placeholder="Search by name"
       />
     </>
